@@ -2,3 +2,39 @@
   box-sizing: border-box;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
+
+:root {
+  --hue-neutral: 200;
+  --hue-wrong: 0;
+  --hue-correct: 145;
+}
+body {
+  --hue: var(--hue-neutral);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 110vw;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+ background-color: hsl(var(--hue), 100%, 50%);
+  transition: background-color 0.5s ease;
+}
+
+body.correct {
+  --hue: var(--hue-correct);
+}
+
+body.wrong {
+  --hue: var(--hue-wrong);
+}
+
+.container {
+  width: 800px;
+  max-width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px 2px;
+}
