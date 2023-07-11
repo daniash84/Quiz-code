@@ -7,16 +7,32 @@
     <link rel="stylesheet" href="Assets/css/style.css">
     </head> 
     <body>
-        <div class="container">
-            <h1>Javascript Quiz</h1>
-            <div class="quiz-container">
+        <nav class="container">
+           <section class="controls">
+            <h1>Java Quiz</h1>
+            <h4>This is a timed quiz. Once you hit the start button, answer the questions within the time alloted for your score at the end.</h4>
+                <button id="start-btn" class="btn start-btn">Start</button>
+                
+           </section>
+        </nav>
+        <main class="container">
+            <aside class="quiz-container">
                 <h2 id= "Question">Questions goes here</h2>
                 <div id="answer-buttons"></div>
                 <button class="btn">Answer 1</button>
                 <button class="btn">Answer 2</button>
                 <button class="btn">Answer 3</button>
                 <button class="btn">Answer 4</button>
-        </div>
+
+                <section class="controls">
+                    <button id="next-btn" class="btn next-btn hidden">Next</button>
+                </section>
+            </aside>
+          <div class="timer"> 
+            <h2>Time Left: <span id="time">0</span></h2>
+          </div>
+    
+            </main>
     </body>
     <script src="js/script.js"></script>
 </html>

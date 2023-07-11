@@ -55,3 +55,8 @@ body {
   margin-top: 20px;
   border: 1px solid black;
 }
+
+.btn:hover {
+  background-color: #a546f3;
+  color: white;
+}
