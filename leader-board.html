@@ -1,33 +1,18 @@
-<!DOCUTYPE  html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=, initial-scale=1.0">
     <title>Java Leader Board</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="Assets/css/style.css">
 </head>
 <body>
     <div class="container">
         <h1>Java Leader Board</h1>
-        <table>
-            <tr>
-                <th>Rank</th>
-                <th>Name</th>
-                <th>Score</th>
-            </tr>
-            <?php
-                $sql = "SELECT * FROM `leaderboard` ORDER BY `leaderboard`.`score` DESC";
-                $result = mysqli_query($conn, $sql);
-                $rank = 1;
-                while($row = mysqli_fetch_assoc($result)){
-                    echo "<tr>
-                        <td>". $rank ."</td>
-                        <td>". $row['name'] ."</td>
-                        <td>". $row['score'] ."</td>
-                    </tr>";
-                    $rank++;
-                }
-            ?>
-        </table>
+        <div class="high-scores">
+            <h2>High Scores</h2>
+            <ul id="highScoresList"></ul>
         <button class="btn" onclick="location.href='index.html'">Play Again</button>
     </div>
+    </body>
+    </html>
