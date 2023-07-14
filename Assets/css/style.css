@@ -69,3 +69,13 @@
   background-color: #a546f3;
   color: white;
 }
+
+.correct {
+  background-color: #0bfa23;
+  color: white;
+}
+
+.incorrect {
+  background-color: #f40b0b;
+  color: white;
+}
