@@ -2,6 +2,7 @@ var question = document.querySelector("#question");
 var choices = Array.from(document.querySelectorAll(".choice-text"));
 var progressText = document.querySelector("#progressText");
 var scoreText = document.querySelector("#score");
+var progressBarFull = document.querySelector("#progressBarFull");
 var timer = document.querySelector("#timer");
 var startButton = document.querySelector("#start-btn");
 var initials = document.querySelector("#initials");
@@ -24,6 +25,51 @@ var timeLeft = 60;
 var que_count = 0;
 var que_numb = 1;
 var userScore = 0;
+
+startGame = () => {
+    startTimer(60);
+    startTimer(0);
+    availableQuestions = [...questions];
+    getNewQuestion();
+};
+
+getNewQuestion = () => {
+    if (availableQuestions.length === 0 || que_count >= MAX_QUESTIONS) {
+        localStorage.setItem("mostRecentScore", userScore);
+
+        return window.location.assign("/end.html");
+    }
+
+    questionCounter++;
+    progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+
+    progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
+
+    var questionIndex = Math.floor(Math.random() * availableQuestions.length);
+
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
+
+    choices.forEach((choice) => {    
+        var number = choice.dataset["number"];
+        choice.innerText = currentQuestion["choice" + number];
+    });
+
+    availableQuestions.splice(questionIndex, 1);
+
+    acceptingAnswers = true;
+}
+
+choices.forEach((choice) => { 
+choice.addEventListener("click", (e) => {
+    if !=== acceptingAnswers) return;
+
+    acceptingAnswers = false;
+    var selectedChoice = e.target;
+    var selectedAnswer = selectedChoice.dataset["number"];
+
+    let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+})
 
 var next_btn.addEventListener("click", nextQuestion);
 
