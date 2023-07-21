@@ -80,3 +80,45 @@
   color: white;
 }
 
+.total-questions {
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: black;
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+.game-over {
+  width: 90%;
+  max-width: 600px;
+  margin: 100px auto 0;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 2px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.time {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
+
+.timer {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: black;
+  padding-bottom: 20px;
+  padding-top: 20px;
+}
