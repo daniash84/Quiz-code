@@ -3,35 +3,45 @@ var choices = Array.from(document.querySelectorAll(".choice-text"));
 var progressText = document.querySelector("#progressText");
 var scoreText = document.querySelector("#score");
 var progressBarFull = document.querySelector("#progressBarFull");
-var timer = document.querySelector("#timer");
-var startButton = document.querySelector("#start-btn");
+var startButton = document.getElementById("start-btn");
+var time = document.querySelector(".time");
+
 var initials = document.querySelector("#initials");
 var highScores = document.querySelector("#high-scores");
 var highScoresList = document.querySelector("#high-scores-list");
 
 var currentQuestion = {};
 var acceptingAnswers = true;
+var score = 0;
 var availableQuestions = [];
-var timerInterval;
+var secondsLeft = 60;
 
-startButton.addEventListener("click", startQuiz);
+var quizcontainer = document.querySelector(".quiz-container");
+
 quizcontainer.classList.add("activeQuiz");
-showQuestions(0);
 questionCounter = 1;
-startTimer(60);
-startTimer(0);
 
-var timeLeft = 60;
 var que_count = 0;
 var que_numb = 1;
 var userScore = 0;
+var score_points = 100;
+var MAX_QUESTIONS = 4;
 
 startGame = () => {
-    startTimer(60);
-    startTimer(0);
+    startTimer();
     availableQuestions = [...questions];
     getNewQuestion();
 };
+
+function startTimer () {
+var timerInterval = setInterval(function(){
+secondsLeft--;
+time.textContent = secondsLeft + "seconds"})
+if (secondsLeft <= 0) {
+    clearInterval(timerInterval);
+}
+
+}
 
 getNewQuestion = () => {
     if (availableQuestions.length === 0 || que_count >= MAX_QUESTIONS) {
@@ -41,7 +51,7 @@ getNewQuestion = () => {
     }
 
     questionCounter++;
-    progressText.innerText = `Question ${questionCounter}/${MAX_QUESTIONS}`;
+    progressText.innerText = `Question ${questionCounter} of ${MAX_QUESTIONS}`;
 
     progressBarFull.style.width = `${(questionCounter / MAX_QUESTIONS) * 100}%`;
 
@@ -52,26 +62,46 @@ getNewQuestion = () => {
 
     choices.forEach((choice) => {    
         var number = choice.dataset["number"];
-        choice.innerText = currentQuestion["choice" + number];
-    });
+        choice.innerText = currentQuestion['choice' + number]; });
+
 
     availableQuestions.splice(questionIndex, 1);
 
     acceptingAnswers = true;
-}
 
-choices.forEach((choice) => { 
-choice.addEventListener("click", (e) => {
-    if !=== acceptingAnswers) return;
+};
 
-    acceptingAnswers = false;
-    var selectedChoice = e.target;
-    var selectedAnswer = selectedChoice.dataset["number"];
+    
 
-    let classToApply = selectedAnswer == currentQuestion.answer ? "correct" : "incorrect";
+
+choices.forEach(choice => { 
+choice.addEventListener("click", e => {
+    if (!acceptingAnswers)
+        return;
+    
+        acceptingAnswers = false;
+        var selectedChoice = e.target;
+        var selectedAnswer = selectedChoice.dataset["number"];
+
+        let classToApply = selectedAnswer == currentQuestion.answer ? "correct": "incorrect";
+
+        if (classToApply === "correct") {
+            incrementScore(score_points);
+        }
+selectedChoice.parentElement.classList.add(classToApply);
+
+setTimeout(() => {
+    selectedChoice.parentElement.classList.remove(classToApply);
+    getNewQuestion();
+},1000)
+    
 })
+});
 
-var next_btn.addEventListener("click", nextQuestion);
+incrementScore = (num) => {
+    score += num;
+    scoreText.innerText = score;
+}
 
 
 
@@ -109,5 +139,7 @@ var questions = [ {
     choice3: "if i = 5 then", isCorrect: false,
     choice4: "if (i == 5)", isCorrect: true
 },
-
+startButton.addEventListener("click", startGame)
 ]
+console.log(startButton);   
+
