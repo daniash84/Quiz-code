@@ -4,6 +4,8 @@ var progressText = document.querySelector("#progressText");
 var scoreText = document.querySelector("#score");
 var progressBarFull = document.querySelector("#progressBarFull");
 var startButton = document.getElementById("start-btn");
+console.log(startButton);
+
 var time = document.querySelector(".time");
 
 var initials = document.querySelector("#initials");
@@ -18,7 +20,8 @@ var secondsLeft = 60;
 
 var quizcontainer = document.querySelector(".quiz-container");
 
-quizcontainer.classList.add("activeQuiz");
+quizcontainer.question.add("activeQuiz");
+console.log(question)
 questionCounter = 1;
 
 var que_count = 0;
@@ -27,7 +30,7 @@ var userScore = 0;
 var score_points = 100;
 var MAX_QUESTIONS = 4;
 
-startGame = () => {
+var startGame = () => {
     startTimer();
     availableQuestions = [...questions];
     getNewQuestion();
@@ -139,7 +142,7 @@ var questions = [ {
     choice3: "if i = 5 then", isCorrect: false,
     choice4: "if (i == 5)", isCorrect: true
 },
-startButton.addEventListener("click", startGame)
 ]
-console.log(startButton);   
+startButton.addEventListener("click", startGame)
+   
 
